@@ -1,5 +1,5 @@
 // Import Node.js built-in readline module to handle user input
-import readline from "readline";
+import readline from 'readline';
 
 // Arithmetic operation functions
 
@@ -41,7 +41,7 @@ function multiply(a: number, b: number): number {
  */
 function divide(a: number, b: number): number {
   if (b === 0) {
-    throw new Error("Cannot divide by zero");
+    throw new Error('Cannot divide by zero');
   }
   return a / b;
 }
@@ -69,7 +69,7 @@ enum OperationsChoice {
  * Displays welcome message when the program starts
  */
 function showWelcome(): void {
-  console.log("Welcome to Node.js calculator");
+  console.log('Welcome to Node.js calculator');
 }
 
 /**
@@ -97,7 +97,7 @@ function getNumber(prompt: string): Promise<number> {
       const number = parseFloat(input); // Convert input to number
       if (isNaN(number) || !isFinite(number)) {
         // If not a number, show error and retry
-        console.log("Invalid number. Please try again.");
+        console.log('Invalid number. Please try again.');
         resolve(getNumber(prompt)); // retry
       } else {
         resolve(number); // Valid number
@@ -112,13 +112,13 @@ function getNumber(prompt: string): Promise<number> {
  */
 function getChoice(): Promise<OperationsChoice> {
   return new Promise((resolve) => {
-    r1.question("Enter choice (1 - 5): ", (input: string) => {
+    r1.question('Enter choice (1 - 5): ', (input: string) => {
       const choice = parseInt(input) as OperationsChoice; // Convert input to integer
       if (choice >= OperationsChoice.ADD && choice <= OperationsChoice.EXIT) {
         resolve(choice); // Valid choice
       } else {
         // Invalid choice, show error and retry
-        console.log("Invalid choice. Please enter a number from 1 to 5.");
+        console.log('Invalid choice. Please enter a number from 1 to 5.');
         resolve(getChoice()); // retry
       }
     });
@@ -133,7 +133,7 @@ function handleCalculationError(error: Error): void {
 }
 
 function exitGraceFully(): void {
-  console.log("Thanks for using the calculator. Goodbye!");
+  console.log('Thanks for using the calculator. Goodbye!');
   r1.close();
   process.exit(0);
 }
@@ -155,8 +155,8 @@ async function main(): Promise<void> {
     }
 
     // Get the two numbers from user
-    const num1 = await getNumber("Enter first number: ");
-    const num2 = await getNumber("Enter second number: ");
+    const num1 = await getNumber('Enter first number: ');
+    const num2 = await getNumber('Enter second number: ');
 
     try {
       let result: number;
@@ -179,7 +179,7 @@ async function main(): Promise<void> {
 
       // Display the result
       console.log(`Result: ${result}\n`);
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Handle any unexpected errors (e.g., division by zero)
       handleCalculationError(error as Error);
     }
