@@ -2,9 +2,9 @@ name: Lint and Format Check
 
 on:
   push:
-    branches: [manin]
+    branches: [main]
   pull_request:
-    branches: [manin]
+    branches: [main]
 
 jobs:
   lint-and-Format:
